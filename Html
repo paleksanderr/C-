@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Książka telefoniczna</title>
+    <style>
+      /* Dodaj swoje style CSS tutaj */
+    </style>
+  </head>
+  <body>
+    <h1>Książka telefoniczna</h1>
+    <form>
+      <label for="imie">Imię:</label>
+      <input type="text" id="imie" />
+      <label for="nazwisko">Nazwisko:</label>
+      <input type="text" id="nazwisko" />
+      <label for="telefon">Telefon:</label>
+      <input type="text" id="telefon" />
+      <button type="button" id="dodaj">Dodaj</button>
+      <button type="button" id="szukaj">Szukaj</button>
+    </form>
+    <div id="komunikat"></div>
+    <div id="lista"></div>
+    <script src="app.js"></script>
+    <script>
+      const szukajBtn = document.querySelector('#szukaj');
+      szukajBtn.addEventListener('click', () => {
+        wyszukajOsobe();
+      });
+      wyswietlListe();
+    </script>
+  </body>
+</html>
