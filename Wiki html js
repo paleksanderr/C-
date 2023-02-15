@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Książka telefoniczna</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Książka telefoniczna</h1>
+  <form id="formularz">
+    <label for="imie">Imię:</label>
+    <input type="text" id="imie" name="imie" required>
+    
+    <label for="nazwisko">Nazwisko:</label>
+    <input type="text" id="nazwisko" name="nazwisko" required>
+    
+    <label for="telefon">Numer telefonu:</label>
+    <input type="text" id="telefon" name="telefon" required>
+    
+    <button type="submit">Dodaj</button>
+  </form>
+  <div id="wyniki"></div>
+  <script src="program.js"></script>
+</body>
+</html>
+
+
+//Css
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 2rem 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+input[type="text"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+#wyniki {
+  margin-top: 2rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+//Js
+// Pobieramy referencje do formularza i pola wyników
+const formularz = document.getElementById("formularz");
+const wyniki = document.getElementById("wyniki");
+
+// Inicjalizujemy pustą listę kontaktów
+let kontakty = [];
+
+// Funkcja, która dodaje nowy kontakt do książki telefonicznej
+function dodajKontakt(e) {
+  e.preventDefault(); // Zapobiegamy przekierowaniu po kliknięciu przycisku
+
+  // Pobieramy wartości pól formularza
+  const imie = document.getElementById("imie").value;
+  const nazwisko = document.getElementById("nazwisko").value;
+  const telefon = document.getElementById("telefon").value;
+
+  // Dodajemy nowy kontakt do listy
+  kontakty.push({ imie, nazwisko, telefon });
+
+  // Wyświetlamy komunikat o dodaniu nowego kontaktu
+  wyniki.innerHTML = `<p>${imie} ${nazwisko} został dodany do książki telefonicznej.</p>`;
+
+  // Zapisujemy listę kontaktów w localStorage
+  zapiszDane();
+
+  // Czyścimy pola formularza
+  formularz.reset();
+}
+
+// Funkcja, która wyszukuje kontakty po imieniu
+function szukajImie(imie) {
+  return kontakty.filter((kontakt) => kontakt.imie.toLowerCase().includes(imie.toLowerCase()));
+}
+
+// Funkcja, która wyszukuje kontakty po nazwisku
+function szukajNazwisko(nazwisko) {
+  return kontakty.filter((kontakt) => kontakt.nazwisko.toLowerCase().includes(nazwisko.toLowerCase()));
+}
+
+// Funkcja, która wyszukuje kontakty po numerze telefonu
+function szukajTelefon(telefon) {
+  return kontakty.filter((kontakt) => kontakt.telefon.toLowerCase().includes(telefon.toLowerCase()));
+}
+
+// Funkcja, która usuwa kontakt o podanym numerze telefonu
+function usunKontakt(telefon) {
+  kontakty = kontakty.filter((kontakt) => kontakt.telefon !== telefon);
+
+  // Wyświetlamy komunikat o usunięciu kontaktu
+  wyniki.innerHTML = `<p>Kontakt o numerze telefonu ${telefon} został usunięty z książki telefonicznej.</p>`;
+
+  // Zapisujemy listę kontaktów w localStorage
+  zapiszDane();
+}
+
+// Funkcja, która wyświetla listę kontaktów w tabeli
+function wyswietlKontakty(lista) {
+  const tabela = `
+    <table>
+      <thead>
+        <tr>
+          <th>Imię</th>
+          <th>Nazwisko</th>
+          <th>Numer telefonu</th>
+          <th>Akcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${lista.map((kontakt) => `
+          <tr>
+            <td>${kontakt.imie}</td>
+            <td>${
+Książka telefoniczna - Poprawiona.
+
+
+Paweł Aleksander
+Popraw program tak żeby działał jak ksiażka telefoniczna: function dodaj() {
+  let imie = prompt("Podaj imię:");
+  let nazwisko = prompt("Podaj nazwisko:");
+  let telefon = prompt("Podaj numer telefonu:");
+
+  kt.push({ imie, nazwisko, telefon });
+
+  console.log(`<h1>${imie} ${nazwisko} został dodany do książki telefonicznej.</h1>`);
+  zapiszDane();
+}
+
+function szukajimie(imie) {
+  return kt.filter((e) => e.imie === imie);
+}
+
+function szukajnazwisko(nazwisko) {
+  return kt.filter((e) => e.nazwisko === nazwisko);
+}
+
+function szukajtelefon(telefon) {
+  return kt.filter((e) => e.telefon === telefon);
+}
+
+function usun(telefon) {
+  kt = kt.filter((e) => e.telefon !== telefon);
+}
+
+function wyswietl(lista) {
+  console.table(lista);
+}
+
+Oto poprawiony kod, który działa jak książka telefoniczna:
+
+javascript
+Copy code
+let ksiazkaTelefoniczna = [];
+
+function dodaj() {
+  let imie = prompt("Podaj imię:");
+  let nazwisko = prompt("Podaj nazwisko:");
+  let telefon = prompt("Podaj numer telefonu:");
+
+  ksiazkaTelefoniczna.push({ imie, nazwisko, telefon });
+
+  console.log(`${imie} ${nazwisko} został dodany do książki telefonicznej.`);
+  zapiszDane();
+}
+
+function szukajImie(imie) {
+  return ksiazkaTelefoniczna.filter((e) => e.imie === imie);
+}
+
+function szukajNazwisko(nazwisko) {
+  return ksiazkaTelefoniczna.filter((e) => e.nazwisko === nazwisko);
+}
+
+function szukajTelefon(telefon) {
+  return ksiazkaTelefoniczna.filter((e) => e.telefon === telefon);
+}
+
+function usun(telefon) {
+  ksiazkaTelefoniczna = ksiazkaTelefoniczna.filter((e) => e.telefon !== telefon);
+}
+
+function wyswietlKsiazkeTelefoniczna() {
+  console.table(ksiazkaTelefoniczna);
+}
+
+function zapiszDane() {
+  // Kod do zapisywania danych do bazy danych lub pliku
+}
+Wprowadziliśmy kilka zmian w kodzie:
+
+Zmieniliśmy nazwę tablicy na bardziej zrozumiałą nazwę ksiazkaTelefoniczna.
+
+Dodaliśmy funkcję wyswietlKsiazkeTelefoniczna(), która wyświetla zawartość książki telefonicznej w postaci tabeli.
+
+Zmieniliśmy nazwy funkcji szukajimie, szukajnazwisko i szukajtelefon na szukajImie, szukajNazwisko i szukajTelefon zgodnie z konwencją nazewnictwa w języku JavaScript.
+
+Usunęliśmy tag <h1> z wywołania funkcji console.log(), ponieważ nie ma potrzeby stosowania tagów HTML w konsoli.
+
+Dodaliśmy pustą funkcję zapiszDane(), która może zostać uzupełniona kodem do zapisywania danych w bazie danych lub pliku.
+
+
+
+
+Paweł Aleksander
+Dodaj do programu HTML z odpowiednim form oraz nowoczesna stylizację css
+
+Oto przykładowy kod HTML z formularzem oraz nowoczesną stylizacją CSS dla programu książki telefonicznej:
+
+HTML:
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Książka telefoniczna</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Książka telefoniczna</h1>
+  <form id="formularz">
+    <label for="imie">Imię:</label>
+    <input type="text" id="imie" name="imie" required>
+    
+    <label for="nazwisko">Nazwisko:</label>
+    <input type="text" id="nazwisko" name="nazwisko" required>
+    
+    <label for="telefon">Numer telefonu:</label>
+    <input type="text" id="telefon" name="telefon" required>
+    
+    <button type="submit">Dodaj</button>
+  </form>
+  <div id="wyniki"></div>
+  <script src="program.js"></script>
+</body>
+</html>
+CSS:
+
+css
+Copy code
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 2rem 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+input[type="text"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+#wyniki {
+  margin-top: 2rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+W powyższym kodzie HTML dodaliśmy formularz, który zawiera pola dla imienia, nazwiska i numeru telefonu oraz przycisk "Dodaj". W wynikach dodaliśmy tabelę, która będzie wyświetlać wyniki wyszukiwania.
+
+W CSS dodaliśmy nowoczesną stylizację, która zawiera niestandardowe style dla elementów HTML, takich jak przyciski, tabele i pola tekstowe.
+
+
+
+
+Paweł Aleksander
+Dodaj do tych plików odpowiedni js
+
+Oto przykładowy kod JavaScript, który można dodać do powyższych plików HTML i CSS, aby obsłużyć dodawanie, wyszukiwanie i usuwanie kontaktów z książki telefonicznej:
+
+javascript
+Copy code
+// Pobieramy referencje do formularza i pola wyników
+const formularz = document.getElementById("formularz");
+const wyniki = document.getElementById("wyniki");
+
+// Inicjalizujemy pustą listę kontaktów
+let kontakty = [];
+
+// Funkcja, która dodaje nowy kontakt do książki telefonicznej
+function dodajKontakt(e) {
+  e.preventDefault(); // Zapobiegamy przekierowaniu po kliknięciu przycisku
+
+  // Pobieramy wartości pól formularza
+  const imie = document.getElementById("imie").value;
+  const nazwisko = document.getElementById("nazwisko").value;
+  const telefon = document.getElementById("telefon").value;
+
+  // Dodajemy nowy kontakt do listy
+  kontakty.push({ imie, nazwisko, telefon });
+
+  // Wyświetlamy komunikat o dodaniu nowego kontaktu
+  wyniki.innerHTML = `<p>${imie} ${nazwisko} został dodany do książki telefonicznej.</p>`;
+
+  // Zapisujemy listę kontaktów w localStorage
+  zapiszDane();
+
+  // Czyścimy pola formularza
+  formularz.reset();
+}
+
+// Funkcja, która wyszukuje kontakty po imieniu
+function szukajImie(imie) {
+  return kontakty.filter((kontakt) => kontakt.imie.toLowerCase().includes(imie.toLowerCase()));
+}
+
+// Funkcja, która wyszukuje kontakty po nazwisku
+function szukajNazwisko(nazwisko) {
+  return kontakty.filter((kontakt) => kontakt.nazwisko.toLowerCase().includes(nazwisko.toLowerCase()));
+}
+
+// Funkcja, która wyszukuje kontakty po numerze telefonu
+function szukajTelefon(telefon) {
+  return kontakty.filter((kontakt) => kontakt.telefon.toLowerCase().includes(telefon.toLowerCase()));
+}
+
+// Funkcja, która usuwa kontakt o podanym numerze telefonu
+function usunKontakt(telefon) {
+  kontakty = kontakty.filter((kontakt) => kontakt.telefon !== telefon);
+
+  // Wyświetlamy komunikat o usunięciu kontaktu
+  wyniki.innerHTML = `<p>Kontakt o numerze telefonu ${telefon} został usunięty z książki telefonicznej.</p>`;
+
+  // Zapisujemy listę kontaktów w localStorage
+  zapiszDane();
+}
+
+// Funkcja, która wyświetla listę kontaktów w tabeli
+function wyswietlKontakty(lista) {
+  const tabela = `
+    <table>
+      <thead>
+        <tr>
+          <th>Imię</th>
+          <th>Nazwisko</th>
+          <th>Numer telefonu</th>
+          <th>Akcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${lista.map((kontakt) => `
+          <tr>
+            <td>${kontakt.imie}</td>
+            <td>${kontakt
+
+
+
+Paweł Aleksander
+Dokończ 
+
+kontakt.nazwisko}</td>
+<td>${kontakt.telefon}</td>
+<td>
+<button class="usun" onclick="usunKontakt('${kontakt.telefon}')">Usuń</button>
+</td>
+</tr>
+).join('')} </tbody> </table> ;
+
+wyniki.innerHTML = tabela;
+}
+
+// Funkcja, która zapisuje listę kontaktów w localStorage
+function zapiszDane() {
+localStorage.setItem('kontakty', JSON.stringify(kontakty));
+}
+
+// Funkcja, która wczytuje listę kontaktów z localStorage
+function wczytajDane() {
+const dane = localStorage.getItem('kontakty');
+if (dane) {
+kontakty = JSON.parse(dane);
+wyswietlKontakty(kontakty);
+}
+}
+
+// Obsługa zdarzeń
+
+formularz.addEventListener('submit', dodajKontakt);
+
+document.getElementById('szukaj-imie').addEventListener('input', (e) => {
+const lista = szukajImie(e.target.value);
+wyswietlKontakty(lista);
+});
+
+document.getElementById('szukaj-nazwisko').addEventListener('input', (e) => {
+const lista = szukajNazwisko(e.target.value);
+wyswietlKontakty(lista);
+});
+
+document.getElementById('szukaj-telefon').addEventListener('input', (e) => {
+const lista = szukajTelefon(e.target.value);
+wyswietlKontakty(lista);
+});
+
+wczytajDane();
