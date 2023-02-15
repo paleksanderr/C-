@@ -1,0 +1,194 @@
+
+//Pierwszy 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+public:
+    string imie;
+    string nazwisko;
+    int ocena;
+
+    Student(string i, string n, int o) {
+        imie = i;
+        nazwisko = n;
+        ocena = o;
+    }
+};
+
+int main() {
+    // Definicja 4 studentów
+    Student s1("Jan", "Kowalski", 5);
+    Student s2("Anna", "Nowak", 4);
+    Student s3("Piotr", "Nowicki", 3);
+    Student s4("Alicja", "Jankowska", 2);
+
+    // Wyświetlenie wyników
+    cout << "Wyniki:\n";
+    cout << s1.imie << " " << s1.nazwisko << ": " << s1.ocena << endl;
+    cout << s2.imie << " " << s2.nazwisko << ": " << s2.ocena << endl;
+    cout << s3.imie << " " << s3.nazwisko << ": " << s3.ocena << endl;
+    cout << s4.imie << " " << s4.nazwisko << ": " << s4.ocena << endl;
+
+    return 0;
+}
+
+// Drugie
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Klasa reprezentująca produkt
+class Product {
+public:
+    string name;
+    double price;
+
+    Product(string n, double p) {
+        name = n;
+        price = p;
+    }
+};
+
+// Klasa reprezentująca granice przyzwoitości ceny produktu
+class PriceLimits {
+public:
+    double min;
+    double max;
+
+    PriceLimits(double mn, double mx) {
+        min = mn;
+        max = mx;
+    }
+};
+
+// Klasa reprezentująca rynek
+class Market {
+public:
+    static bool isPriceReasonable(Product p, PriceLimits pl) {
+        return (p.price >= pl.min && p.price <= pl.max);
+    }
+};
+
+int main() {
+    // Definicja produktów i granic cen przyzwoitości
+    Product p1("Mleko", 2.50);
+    PriceLimits pl1(2.00, 3.00);
+
+    Product p2("Jajka", 4.20);
+    PriceLimits pl2(3.50, 5.00);
+
+    Product p3("Chleb", 3.80);
+    PriceLimits pl3(3.00, 4.50);
+
+    // Sprawdzenie, czy ceny produktów leżą w granicach przyzwoitości
+    cout << "Cena za " << p1.name << " wynosi " << p1.price << " zl." << endl;
+    if (Market::isPriceReasonable(p1, pl1)) {
+        cout << "Cena jest w granicach przyzwoitości." << endl;
+    } else {
+        cout << "Cena jest zbyt niska lub zbyt wysoka." << endl;
+    }
+
+    cout << "Cena za " << p2.name << " wynosi " << p2.price << " zl." << endl;
+    if (Market::isPriceReasonable(p2, pl2)) {
+        cout << "Cena jest w granicach przyzwoitości." << endl;
+    } else {
+        cout << "Cena jest zbyt niska lub zbyt wysoka." << endl;
+    }
+
+    cout << "Cena za " << p3.name << " wynosi " << p3.price << " zl." << endl;
+    if (Market::isPriceReasonable(p3, pl3)) {
+        cout << "Cena jest w granicach przyzwoitości." << endl;
+    } else {
+        cout << "Cena jest zbyt niska lub zbyt wysoka." << endl;
+    }
+
+    return 0;
+}
+
+// Trzeci
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Przedmiot {
+private:
+    int liczba;
+    string napis;
+
+public:
+    Przedmiot(int liczba, const string& napis)
+        : liczba(liczba), napis(napis)
+    {}
+
+    void wypisz() {
+        cout << napis << ": " << liczba << endl;
+    }
+};
+
+int main() {
+    Przedmiot auto(4, "Auto");
+    Przedmiot woz(2, "Wóz");
+    Przedmiot rower(2, "Rower");
+
+    auto.wypisz();
+    woz.wypisz();
+    rower.wypisz();
+
+    return 0;
+}
+
+// Czwarty
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+private:
+    string nazwisko;
+    int wiek;
+
+public:
+    void wypisz() const {
+        cout << "Nazwisko: " << nazwisko << ", wiek: " << wiek << endl;
+    }
+
+    void zapamietaj(const string& n, int w) {
+        nazwisko = n;
+        wiek = w;
+    }
+};
+
+int main() {
+    Student s1, s2;
+
+    s1.zapamietaj("Kowalski", 20);
+    s2.zapamietaj("Nowak", 22);
+
+    s1.wypisz();
+    s2.wypisz();
+
+    string nazwisko;
+    int wiek;
+
+    cout << "Podaj swoje nazwisko: ";
+    cin >> nazwisko;
+
+    cout << "Podaj swój wiek: ";
+    cin >> wiek;
+
+    Student s3;
+    s3.zapamietaj(nazwisko, wiek);
+
+    s3.wypisz();
+
+    return 0;
+}
+
