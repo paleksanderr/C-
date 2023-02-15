@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Książka telefoniczna</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Książka telefoniczna</h1>
+    <form>
+      <label for="imie">Imię:</label>
+      <input type="text" id="imie" name="imie" required>
+      <label for="nazwisko">Nazwisko:</label>
+      <input type="text" id="nazwisko" name="nazwisko" required>
+      <label for="telefon">Telefon:</label>
+      <input type="tel" id="telefon" name="telefon" required>
+      <button type="submit" onclick="dodajOsobe(event)">Dodaj</button>
+    </form>
+    <div id="komunikat"></div>
+    <div id="lista"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+Css 
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+h1 {
+  background-color: #008080;
+  color: #fff;
+  padding: 1rem;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+form label {
+  margin: 0.5rem 0;
+}
+
+form input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 1rem;
+}
+
+form button {
+  background-color: #008080;
+  color: #fff;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#komunikat {
+  margin: 1rem;
+}
+
+#lista {
+  margin: 1rem;
+}
+
+#lista table {
+  border-collapse: collapse;
+}
+
+#lista th,
+#lista td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+Js
+let kt = [];
+
+function dodajOsobe(event) {
+  event.preventDefault();
+  let komunikat = document.querySelector('#komunikat');
+  let imie = document.querySelector('#imie').value;
+  let nazwisko = document.querySelector('#nazwisko').value;
+  let telefon = document.querySelector('#telefon').value;
+
+  let dodawanie = dodaj(imie, nazwisko, telefon);
+  if (dodawanie != 'OK') {
+    komunikat.innerHTML = `<h2>${dodawanie}</h2>`;
+  } else {
+    komunikat.innerHTML = '';
+    wyswietlListe();
+    zapiszDane();
+  }
+}
+
+function dodaj(imie, nazwisko, telefon) {
+  if (kt.some(e => e.telefon === telefon)) {
+    return 'Ten numer telefonu już istnieje w książce telefonicznej.';
+  } else {
+    kt.push({imie, nazwisko, telefon});
+    return 'OK';
+  }
+}
+
+function wyszukajOsobe() {
+let imie = document.querySelector('#imie').value;
+let nazwisko = document.querySelector('#nazwisko').value;
+let telefon = document.querySelector('#telefon').value;
+let wynik;
+if (imie) {
+wynik = szukajimie(imie);
+} else if (nazwisko) {
+wynik = szukajnazwisko(nazwisko);
+} else if (telefon) {
+wynik = szukajtelefon(telefon);
+} else {
+return;
+}
+wyswietlListe(wynik);
+}
+
+function szukajimie(imie) {
+return kt.filter((e) => e.imie == imie);
+}
+function szukajnazwisko(nazwisko) {
+return kt.filter((e) => e.nazwisko == nazwisko);
+}
+
+function szukajtelefon(telefon) {
+return kt.filter((e) => e.telefon == telefon);
+}
+
+function usun(telefon) {
+kt = kt.filter((e) => e.telefon != telefon);
+wyswietlListe();
+zapiszDane();
+}
+function wyswietlListe(lista = kt) {
+let tabela = document.createElement('table');
+tabela.innerHTML = <thead> <tr> <th>Imię</th> <th>Nazwisko</th> <th>Telefon</th> <th>Akcja</th> </tr> </thead> ;
+let tbody = document.createElement('tbody');
+for (let osoba of lista) {
+let tr = document.createElement('tr');
+let tdImie = document.createElement('td');
+tdImie.textContent = osoba.imie;
+tr.appendChild(tdImie);
+let tdNazwisko = document.createElement('td');
+tdNazwisko.textContent = osoba.nazwisko;
+tr.appendChild(tdNazwisko);
+let tdTelefon = document.createElement('td');
+tdTelefon.textContent = osoba.telefon;
+tr.appendChild(tdTelefon);
+let tdAkcja = document.createElement('td');
+let button = document.createElement('button');
+button.textContent = 'Usuń';
+button.addEventListener('click', () => {
+usun(osoba.telefon);
+});
+tdAkcja.appendChild(button);
+tr.appendChild(tdAkcja);
+tbody.appendChild(tr);
+}
+tabela.appendChild(tbody);
+let listaDiv = document.querySelector('#lista');
+listaDiv.innerHTML = '';
+listaDiv.appendChild(tabela);
+}
+
+function zapiszDane() {
+localStorage.setItem('kt', JSON.stringify(kt));
+}
+
+function wczytajDane() {
+let dane = localStorage.getItem('kt');
+if (dane) {
+kt = JSON.parse(dane);
+wyswietlListe();
+}
+}
+wczytajDane();
